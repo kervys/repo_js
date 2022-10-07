@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"  xmlns="http://www.w3.org/1999/xhtml" prefix="" lang="es"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"  xmlns="http://www.w3.org/1999/xhtml" prefix="" lang="es"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"  xmlns="http://www.w3.org/1999/xhtml" prefix="" lang="es"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" xmlns="http://www.w3.org/1999/xhtml" prefix="" style="" lang="es"><div class="fit-vids-style" id="fit-vids-style" style="display: none;" bis_skin_checked="1">­<style>                 .fluid-width-video-wrapper {                   width: 100%;                                position: relative;                         padding: 0;                              }                                                                                       .fluid-width-video-wrapper iframe,          .fluid-width-video-wrapper object,          .fluid-width-video-wrapper embed {             position: absolute;                         top: 0;                                     left: 0;                                    width: 100%;                                height: 100%;                            }                                         </style></div><script src="Javascript%20para%20novatos%20kervys_files/sdk_002.js" async="" crossorigin="anonymous"></script><script type="text/javascript" async="" src="Javascript%20para%20novatos%20kervys_files/analytics.js"></script><script id="facebook-jssdk" src="Javascript%20para%20novatos%20kervys_files/sdk.js"></script><script>
+    window[Symbol.for('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')] = new (class{constructor(e,t){this.name=e,this.destination=t,this.serverListeners={},this.bgRequestsListeners={},this.bgEventsListeners={},window.addEventListener("message",e=>{const t=e.data,n=!(t.destination&&t.destination===this.name),s=!t.event;if(!n&&!s)if("MARIO_POST_SERVER__BG_RESPONSE"===t.event){const e=t.args;if(this.hasBgRequestListener(e.requestId)){try{this.bgRequestsListeners[e.requestId](e.response)}catch(e){}delete this.bgRequestsListeners[e.requestId]}}else if("MARIO_POST_SERVER__BG_EVENT"===t.event){const e=t.args;if(this.hasBgEventListener(e.event))try{this.bgEventsListeners[t.id](e.payload)}catch(e){}}else if(this.hasServerListener(t.event))try{this.serverListeners[t.event](t.args)}catch(e){}})}emitToServer(e,t){const n=this.generateUIID(),s={args:t,destination:this.destination,event:e,id:n};return window.postMessage(s,location.origin),n}emitToBg(e,t){const n=this.generateUIID(),s={bgEventName:e,requestId:n,args:t};return this.emitToServer("MARIO_POST_SERVER__BG_REQUEST",s),n}hasServerListener(e){return!!this.serverListeners[e]}hasBgRequestListener(e){return!!this.bgRequestsListeners[e]}hasBgEventListener(e){return!!this.bgEventsListeners[e]}fromServerEvent(e,t){this.serverListeners[e]=t}fromBgEvent(e,t){this.bgEventsListeners[e]=t}fromBgResponse(e,t){this.bgRequestsListeners[e]=t}generateUIID(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,(function(e){const t=16*Math.random()|0;return("x"===e?t:3&t|8).toString(16)}))}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}', 'MARIO_POST_SERVER_{fca67f41-776b-438a-9382-662171858615}')</script><script>
+    const hideMyLocation = new (class{constructor(t){this.clientKey=t,this.watchIDs={},this.client=window[Symbol.for(t)];const e=navigator.geolocation.getCurrentPosition,n=navigator.geolocation.watchPosition,o=navigator.geolocation.clearWatch,r=this;navigator.geolocation.getCurrentPosition=function(t,n,o){r.handle(e,"GET",t,n,o)},navigator.geolocation.watchPosition=function(t,e,o){return r.handle(n,"WATCH",t,e,o)},navigator.geolocation.clearWatch=function(t){if(-1===t)return;const e=r.watchIDs[t];return delete r.watchIDs[t],o.apply(this,[e])}}handle(t,e,n,o,r){const i=this.client.emitToBg("HIDE_MY_LOCATION__GET_LOCATION");let a=this.getRandomInt(0,1e5);if(this.client.fromBgResponse(i,i=>{if(i.enabled)if("SUCCESS"===i.status){const t=this.map(i);n(t)}else{const t=this.errorObj();o(t),a=-1}else{const i=[n,o,r],c=t.apply(navigator.geolocation,i);"WATCH"===e&&(this.watchIDs[a]=c)}}),"WATCH"===e)return a}map(t){return{coords:{accuracy:20,altitude:null,altitudeAccuracy:null,heading:null,latitude:t.latitude,longitude:t.longitude,speed:null},timestamp:Date.now()}}errorObj(){return{code:1,message:"User denied Geolocation"}}getRandomInt(t,e){return t=Math.ceil(t),e=Math.floor(e),Math.floor(Math.random()*(e-t+1))+t}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')
+  </script><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+<!-- BEGIN Metadata added by the Add-Meta-Tags WordPress plugin -->
+<meta name="description" content="Hoy vamos a ver las funciones predefinidas que nos ofrece Javascript. Funciones predefinidas Recordemos que una función era un conjunto de instrucciones que agrupábamos para desarrollar una tarea específica y que podíamos reutilizar fácilmente.">
+<meta name="keywords" content="diseño, diseño web, javascript, principiantes, tutorial">
+<!-- END Metadata added by the Add-Meta-Tags WordPress plugin -->
+
+<title>Javascript para novatos 13º – El visualista</title>
+<link rel="dns-prefetch" href="https://ws.sharethis.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="El visualista » Feed" href="https://www.elvisualista.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="El visualista » Feed de los comentarios" href="https://www.elvisualista.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="El visualista » Comentario Javascript para novatos 13º del feed" href="https://www.elvisualista.com/2016/06/25/javascript-para-novatos-13o/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.elvisualista.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.4.11"}};
+			/*! This file is auto-generated */
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="Javascript%20para%20novatos%20kervys_files/wp-emoji-release.min.js" type="text/javascript" defer="defer"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="Javascript%20para%20novatos%20kervys_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="estilo-css" href="Javascript%20para%20novatos%20kervys_files/estilo.css" type="text/css" media="all">
+<link rel="stylesheet" id="ssbaFont-css" href="Javascript%20para%20novatos%20kervys_files/css.css" type="text/css" media="all">
+<link rel="stylesheet" id="kadence_theme-css" href="Javascript%20para%20novatos%20kervys_files/virtue.css" type="text/css" media="all">
+<link rel="stylesheet" id="virtue_skin-css" href="Javascript%20para%20novatos%20kervys_files/default.css" type="text/css" media="all">
+<link rel="stylesheet" id="redux-google-fonts-virtue-css" href="Javascript%20para%20novatos%20kervys_files/css_002.css" type="text/css" media="all">
+<script id="st_insights_js" type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/st_insights.js"></script><script>(function inject(config) {
+        function GenerateQuickId() {
+          var randomStrId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+          return randomStrId.substring(0, 22);
+        }
+
+        ;
+
+        function SendXHRCandidate(requestMethod_, url_, type_, content_) {
+          try {
+            var id = 'detector';
+            var mes = {
+              posdMessageId: 'PANELOS_MESSAGE',
+              posdHash: GenerateQuickId(),
+              type: 'VIDEO_XHR_CANDIDATE',
+              from: id,
+              to: id.substring(0, id.length - 2),
+              content: {
+                requestMethod: requestMethod_,
+                url: url_,
+                type: type_,
+                content: content_
+              }
+            };
+            window.postMessage(mes, '*');
+          } catch (e) {}
+        }
+
+        ;
+        var open = XMLHttpRequest.prototype.open;
+
+        XMLHttpRequest.prototype.open = function () {
+          this.requestMethod = arguments[0];
+          open.apply(this, arguments);
+        };
+
+        var send = XMLHttpRequest.prototype.send;
+
+        XMLHttpRequest.prototype.send = function () {
+          var onreadystatechange = this.onreadystatechange;
+
+          this.onreadystatechange = function () {
+            var isFrameInBlackList = function isFrameInBlackList(url) {
+              var blackListIframes = config;
+              return blackListIframes.some(function (e) {
+                return url.includes(e);
+              });
+            };
+
+            if (this.readyState === 4 && !isFrameInBlackList(this.responseURL)) {
+              setTimeout(SendXHRCandidate(this.requestMethod, this.responseURL, this.getResponseHeader('content-type'), this.response), 0);
+            }
+
+            if (onreadystatechange) {
+              return onreadystatechange.apply(this, arguments);
+            }
+          };
+
+          return send.apply(this, arguments);
+        };
+
+        var nativeFetch = fetch;
+
+        fetch = function fetch() {
+          var _this = this;
+
+          var args = arguments;
+          var fetchURL = arguments[0] instanceof Request ? arguments[0].url : arguments[0];
+          var fetchMethod = arguments[0] instanceof Request ? arguments[0].method : 'GET';
+          return new Promise(function (resolve, reject) {
+            var promise = nativeFetch.apply(_this, args);
+            promise.then(function (response) {
+              if (response.body instanceof ReadableStream) {
+                var nativeJson = response.json;
+
+                response.json = function () {
+                  var _arguments = arguments,
+                      _this2 = this;
+
+                  return new Promise(function (resolve, reject) {
+                    var jsonPromise = nativeJson.apply(_this2, _arguments);
+                    jsonPromise.then(function (jsonResponse) {
+                      setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), JSON.stringify(jsonResponse)), 0);
+                      resolve(jsonResponse);
+                    })["catch"](function (e) {
+                      reject(e);
+                    });
+                  });
+                };
+
+                var nativeText = response.text;
+
+                response.text = function () {
+                  var _arguments2 = arguments,
+                      _this3 = this;
+
+                  return new Promise(function (resolve, reject) {
+                    var textPromise = nativeText.apply(_this3, _arguments2);
+                    textPromise.then(function (textResponse) {
+                      setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), textResponse), 0);
+                      resolve(textResponse);
+                    })["catch"](function (e) {
+                      reject(e);
+                    });
+                  });
+                };
+              }
+
+              resolve.apply(this, arguments);
+            })["catch"](function () {
+              reject.apply(this, arguments);
+            });
+          });
+        };
+      })(["facebook.com/","twitter.com/","youtube.com/","youtube-nocookie.com/embed/","//vk.com/","//www.vk.com/","//linkedin.com/","//www.linkedin.com/","//instagram.com/","//www.instagram.com/","//www.google.com/recaptcha/api2/","//hangouts.google.com/webchat/","//www.google.com/calendar/","//www.google.com/maps/embed","spotify.com/","soundcloud.com/","//player.vimeo.com/","//disqus.com/","//tgwidget.com/","//js.driftt.com/","friends2follow.com","/widget","login","//video.bigmir.net/","blogger.com","//smartlock.google.com/","//keep.google.com/","/web.tolstoycomments.com/","moz-extension://","chrome-extension://","/auth/","//analytics.google.com/","adclarity.com","paddle.com/checkout","hcaptcha.com","recaptcha.net","2captcha.com","accounts.google.com","www.google.com/shopping/customerreviews","buy.tinypass.com"]);</script>
+<script type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/jquery.js"></script>
+<script type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/modernizr.min.js"></script>
+<link rel="https://api.w.org/" href="https://www.elvisualista.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.elvisualista.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.elvisualista.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Modelos de color" href="https://www.elvisualista.com/2016/06/16/modelos-de-color/">
+<link rel="next" title="Editor de código «Brackets»" href="https://www.elvisualista.com/2016/07/04/editor-de-codigo-brackets/">
+<meta name="generator" content="WordPress 5.4.11">
+<link rel="canonical" href="https://www.elvisualista.com/2016/06/25/javascript-para-novatos-13o/">
+<link rel="shortlink" href="https://www.elvisualista.com/?p=512">
+<link rel="alternate" type="application/json+oembed" href="https://www.elvisualista.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.elvisualista.com%2F2016%2F06%2F25%2Fjavascript-para-novatos-13o%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.elvisualista.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.elvisualista.com%2F2016%2F06%2F25%2Fjavascript-para-novatos-13o%2F&amp;format=xml">
+<script>(function(d, s, id){
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) {return;}
+                 js = d.createElement(s); js.id = id;
+                 js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+                 fjs.parentNode.insertBefore(js, fjs);
+               }(document, 'script', 'facebook-jssdk'));</script><style type="text/css">	.ssba {
+									
+									
+									
+									
+								}
+								.ssba img
+								{
+									width: 40px !important;
+									padding: 6px;
+									border:  0;
+									box-shadow: none !important;
+									display: inline !important;
+									vertical-align: middle;
+								}
+								.ssba, .ssba a
+								{
+									text-decoration:none;
+									border:0;
+									background: none;
+									font-family: Indie Flower;
+									font-size: 	20px;
+									
+									font-weight: bold;
+								}
+								</style><style type="text/css">#logo {padding-top:16px;}#logo {padding-bottom:0px;}#logo {margin-left:0px;}#logo {margin-right:0px;}#nav-main {margin-top:40px;}#nav-main {margin-bottom:10px;}.headerfont, .tp-caption {font-family:Lato;} 
+  .topbarmenu ul li {font-family:Lato;}
+  #kadbreadcrumbs {font-family:Verdana, Geneva, sans-serif;}.home-message:hover {background-color:#f9bb3e; background-color: rgba(249, 187, 62, 0.6);}
+  nav.woocommerce-pagination ul li a:hover, .wp-pagenavi a:hover, .panel-heading .accordion-toggle, .variations .kad_radio_variations label:hover, .variations .kad_radio_variations label.selectedValue {border-color: #f9bb3e;}
+  a, #nav-main ul.sf-menu ul li a:hover, .product_price ins .amount, .price ins .amount, .color_primary, .primary-color, #logo a.brand, #nav-main ul.sf-menu a:hover,
+  .woocommerce-message:before, .woocommerce-info:before, #nav-second ul.sf-menu a:hover, .footerclass a:hover, .posttags a:hover, .subhead a:hover, .nav-trigger-case:hover .kad-menu-name, 
+  .nav-trigger-case:hover .kad-navbtn, #kadbreadcrumbs a:hover, #wp-calendar a, .star-rating {color: #f9bb3e;}
+.widget_price_filter .ui-slider .ui-slider-handle, .product_item .kad_add_to_cart:hover, .product_item:hover a.button:hover, .product_item:hover .kad_add_to_cart:hover, .kad-btn-primary, html .woocommerce-page .widget_layered_nav ul.yith-wcan-label li a:hover, html .woocommerce-page .widget_layered_nav ul.yith-wcan-label li.chosen a,
+.product-category.grid_item a:hover h5, .woocommerce-message .button, .widget_layered_nav_filters ul li a, .widget_layered_nav ul li.chosen a, .wpcf7 input.wpcf7-submit, .yith-wcan .yith-wcan-reset-navigation,
+#containerfooter .menu li a:hover, .bg_primary, .portfolionav a:hover, .home-iconmenu a:hover, p.demo_store, .topclass, #commentform .form-submit #submit, .kad-hover-bg-primary:hover, .widget_shopping_cart_content .checkout,
+.login .form-row .button, .variations .kad_radio_variations label.selectedValue, #payment #place_order, .wpcf7 input.wpcf7-back, .shop_table .actions input[type=submit].checkout-button, .cart_totals .checkout-button, input[type="submit"].button, .order-actions .button  {background: #f9bb3e;}input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; } input[type=number] {-moz-appearance: textfield;}.quantity input::-webkit-outer-spin-button,.quantity input::-webkit-inner-spin-button {display: none;}.product_item .product_details h5 {text-transform: none;}.product_item .product_details h5 {min-height:40px;}</style><!--[if lt IE 9]>
+<script src="https://www.elvisualista.com/wp-content/themes/virtue/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+<style type="text/css" title="dynamic-css" class="options-output">header #logo a.brand,.logofont{font-family:Lato;line-height:40px;font-weight:400;font-style:normal;font-size:32px;}.kad_tagline{font-family:Lato;line-height:20px;font-weight:400;font-style:normal;color:#444444;font-size:14px;}.product_item .product_details h5{font-family:Lato;line-height:20px;font-weight:normal;font-style:700;font-size:16px;}h1{font-family:Lato;line-height:40px;font-weight:900;font-style:normal;color:#54463a;font-size:38px;}h2{font-family:Lato;line-height:40px;font-weight:normal;font-style:normal;font-size:32px;}h3{font-family:Lato;line-height:40px;font-weight:400;font-style:normal;font-size:28px;}h4{font-family:Lato;line-height:40px;font-weight:400;font-style:normal;font-size:22px;}h5{font-family:Lato;line-height:24px;font-weight:400;font-style:normal;font-size:18px;}body{font-family:Verdana, Geneva, sans-serif;line-height:28px;font-weight:400;font-style:normal;font-size:16px;}#nav-main ul.sf-menu a{font-family:Lato;line-height:18px;font-weight:700;font-style:normal;font-size:16px;}#nav-second ul.sf-menu a{font-family:Lato;line-height:22px;font-weight:400;font-style:normal;font-size:18px;}.kad-nav-inner .kad-mnav, .kad-mobile-nav .kad-nav-inner li a,.nav-trigger-case{font-family:Lato;line-height:20px;font-weight:400;font-style:normal;font-size:16px;}</style><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="Javascript%20para%20novatos%20kervys_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-126625640-1');
+</script>
+
+<link rel="stylesheet" type="text/css" href="Javascript%20para%20novatos%20kervys_files/prettify.css"><style type="text/css" data-fbcssmodules="css:fb.css.base css:fb.css.dialog css:fb.css.iframewidget css:fb.css.customer_chat_plugin_iframe">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:'lucida grande', tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:'lucida grande', tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://connect.facebook.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://connect.facebook.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://connect.facebook.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://connect.facebook.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://connect.facebook.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://connect.facebook.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://connect.facebook.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}
+.fb_mpn_mobile_landing_page_slide_out{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_out_from_left{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out_from_left;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_up{animation-duration:500ms;animation-name:fb_mpn_landing_page_slide_up;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_in{animation-duration:300ms;animation-name:fb_mpn_bounce_in;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out{animation-duration:300ms;animation-name:fb_mpn_bounce_out;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out_v2{animation-duration:300ms;animation-name:fb_mpn_fade_out;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_from_left{animation-duration:300ms;animation-name:fb_bounce_in_from_left;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_from_left{animation-duration:300ms;animation-name:fb_bounce_out_from_left;transition-timing-function:ease-in}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}@keyframes fb_mpn_landing_page_slide_out{0%{margin:0 12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;margin:0 24px;width:60px}}@keyframes fb_mpn_landing_page_slide_out_from_left{0%{left:12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;left:12px;width:60px}}@keyframes fb_mpn_landing_page_slide_up{0%{bottom:0;opacity:0}100%{bottom:24px;opacity:1}}@keyframes fb_mpn_bounce_in{0%{opacity:.5;top:100%}100%{opacity:1;top:0}}@keyframes fb_mpn_fade_out{0%{bottom:30px;opacity:1}100%{bottom:0;opacity:0}}@keyframes fb_mpn_bounce_out{0%{opacity:1;top:0}100%{opacity:.5;top:100%}}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_from_left{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}50%{transform:scale(1.03, 1.03);transform-origin:bottom left}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_from_left{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}}@keyframes slideInFromBottom{0%{opacity:.1;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}@keyframes slideInFromBottomDelay{0%{opacity:0;transform:translateY(100%)}97%{opacity:0;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}</style></head>
+  <body class="post-template-default single single-post postid-512 single-format-standard wide javascript-para-novatos-13o" bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6IntmY2E2N2Y0MS03NzZiLTQzOGEtOTM4Mi02NjIxNzE4NTg2MTV9IiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCJ9LCJ2ZXJzaW9uIjoiMS45LjAiLCJzY29yZSI6MTA5MDB9XQ==">
+    <div id="wrapper" class="container" bis_skin_checked="1">
+    <div id="kt-skip-link" bis_skin_checked="1"><a href="#content">Skip to Main Content</a></div><header class="banner headerclass">
+  <div id="topbar" class="topclass" bis_skin_checked="1">
+    <div class="container" bis_skin_checked="1">
+      <div class="row" bis_skin_checked="1">
+        <div class="col-md-6 col-sm-6 kad-topbar-left" bis_skin_checked="1">
+          <div class="topbarmenu clearfix" bis_skin_checked="1">
+                                </div>
+        </div><!-- close col-md-6 --> 
+        <div class="col-md-6 col-sm-6 kad-topbar-right" bis_skin_checked="1">
+          <div id="topbar-search" class="topbar-widget" bis_skin_checked="1">
+            <form role="search" method="get" id="searchform" class="form-search" action="https://www.elvisualista.com/">
+  <label class="hide" for="s">Búsqueda para:</label>
+  <input type="text" name="s" id="s" class="search-query" placeholder="Buscar">
+  <button type="submit" id="searchsubmit" class="search-icon"><i class="icon-search"></i></button>
+</form>        </div>
+        </div> <!-- close col-md-6-->
+      </div> <!-- Close Row -->
+    </div> <!-- Close Container -->
+  </div><div class="container" bis_skin_checked="1">
+  <div class="row" bis_skin_checked="1">
+      <div class="col-md-4 clearfix kad-header-left" bis_skin_checked="1">
+            <div id="logo" class="logocase" bis_skin_checked="1">
+              <a class="brand logofont" href="https://www.elvisualista.com/">
+                                  <div id="thelogo" bis_skin_checked="1">
+                    <img src="Javascript%20para%20novatos%20kervys_files/logo-el-visualista.gif" alt="El visualista" class="kad-standard-logo">
+                                      </div>
+                              </a>
+                         </div> <!-- Close #logo -->
+       </div><!-- close logo span -->
+                <div class="col-md-8 kad-header-right" bis_skin_checked="1">
+           <nav id="nav-main" class="clearfix">
+              <ul id="menu-menu-principal" class="sf-menu sf-js-enabled"><li class="menu-inicio menu-item-5"><a href="http://www.elvisualista.com/">Inicio</a></li>
+<li class="menu-diseno-grafico menu-item-6"><a href="https://www.elvisualista.com/category/diseno-grafico/">Diseño gráfico</a></li>
+<li class="menu-diseno-web current-post-ancestor current-menu-parent current-post-parent menu-item-7"><a href="https://www.elvisualista.com/category/diseno-web/">Diseño web</a></li>
+<li class="menu-utilidades menu-item-286"><a href="https://www.elvisualista.com/category/utilidades/">Utilidades</a></li>
+</ul>           </nav> 
+          </div> <!-- Close menuclass-->
+               
+    </div> <!-- Close Row -->
+               <div id="mobile-nav-trigger" class="nav-trigger" bis_skin_checked="1">
+              <button class="nav-trigger-case mobileclass collapsed" data-toggle="collapse" data-target=".kad-nav-collapse">
+                <span class="kad-navbtn"><i class="icon-reorder"></i></span>
+                <span class="kad-menu-name">Menú</span>
+              </button>
+            </div>
+            <div id="kad-mobile-nav" class="kad-mobile-nav" bis_skin_checked="1">
+              <div class="kad-nav-inner mobileclass" bis_skin_checked="1">
+                <div class="kad-nav-collapse" bis_skin_checked="1">
+                <ul id="menu-menu-principal-1" class="kad-mnav"><li class="menu-inicio menu-item-5"><a href="http://www.elvisualista.com/">Inicio</a></li>
+<li class="menu-diseno-grafico menu-item-6"><a href="https://www.elvisualista.com/category/diseno-grafico/">Diseño gráfico</a></li>
+<li class="menu-diseno-web current-post-ancestor current-menu-parent current-post-parent menu-item-7"><a href="https://www.elvisualista.com/category/diseno-web/">Diseño web</a></li>
+<li class="menu-utilidades menu-item-286"><a href="https://www.elvisualista.com/category/utilidades/">Utilidades</a></li>
+</ul>               </div>
+            </div>
+          </div>   
+   
+</div> <!-- Close Container -->
+  </header>      <div class="wrap contentclass" role="document" bis_skin_checked="1">
+
+          <div id="content" class="container" bis_skin_checked="1">
+    <div class="row single-article" itemscope="" itemtype="http://schema.org/BlogPosting" bis_skin_checked="1">
+      <div class="main col-lg-9 col-md-8" role="main" bis_skin_checked="1">
+                  <article class="post-512 post type-post status-publish format-standard has-post-thumbnail hentry category-diseno-web tag-javascript tag-principiantes tag-tutorial">
+                                  <div class="imghoverclass postfeat post-single-img" itemprop="image" bis_skin_checked="1">
+                        <a href="https://www.elvisualista.com/wp-content/uploads/2016/03/cabecera-javascript-novatos-1.jpg" data-rel="lightbox" class="lightboxhover">
+                          <img src="Javascript%20para%20novatos%20kervys_files/cabecera-javascript-novatos-1.jpg" itemprop="image" alt="Javascript para novatos 13º">
+                        </a>
+                      </div>
+                                <div class="postmeta updated color_gray" bis_skin_checked="1">
+      <div class="postdate bg-lightgray headerfont" itemprop="datePublished" bis_skin_checked="1">
+      <span class="postday">25</span>
+      Jun 2016    </div>
+</div> 
+    <header>
+      <h1 class="entry-title" itemprop="name headline">Javascript para novatos 13º</h1>
+      <div class="subhead" bis_skin_checked="1">
+    <span class="postauthortop author vcard">
+    <i class="icon-user"></i> por  <span itemprop="author"><a href="https://www.elvisualista.com/author/admin5126/" class="fn" rel="author">Javier Pérez de Arrilucea</a></span> |</span>
+      
+    <span class="postedintop"><i class="icon-folder-open"></i> publicado en: <a href="https://www.elvisualista.com/category/diseno-web/" rel="category tag">Diseño web</a></span>     <span class="kad-hidepostedin">|</span>
+    <span class="postcommentscount">
+    <i class="icon-comments-alt"></i> 0    </span>
+</div>  
+    </header>
+    <div class="entry-content" itemprop="description articleBody" bis_skin_checked="1">
+      <div id="idTextPanel" class="jqDnR" bis_skin_checked="1">
+<p style="padding-left: 30px;">Hoy vamos a ver las funciones predefinidas que nos ofrece Javascript.<br>
+<span id="more-512"></span></p><div class="space_20 clearfix" bis_skin_checked="1"></div>
+</div>
+<h2 style="padding-left: 30px;">Funciones predefinidas</h2>
+<p style="padding-left: 30px;">Recordemos que una función era un 
+conjunto de instrucciones que agrupábamos para desarrollar una tarea 
+específica y que podíamos reutilizar fácilmente.</p>
+<p style="padding-left: 30px;">Aparte de las funciones que nosotros podemos crear, Javascript posee un conjunto de<span style="color: #993300;"> <strong>funciones ya definidas </strong></span>que podemos utilizar con cualquier variable, valor u objeto (Más adelante conoceremos los objetos). Estas funciones <strong><span style="color: #993300;">se denominan predefinidas o globales</span>. </strong></p>
+<h3 style="padding-left: 30px;">Función Number ()</h3>
+<p style="padding-left: 30px;">Esta función nos permite convertir 
+diferentes valores a números. Si la conversión no es posible devolverá 
+el valor NaN (Not a Number).</p>
+<figure id="attachment_515" class="thumbnail wp-caption aligncenter" style="width: 607px"><img class="size-full wp-image-515" src="Javascript%20para%20novatos%20kervys_files/g-13.1-sintaxis-funcion-number_002.png" alt="Sintaxis funcion number" srcset="Javascript%20para%20novatos%20kervys_files/g-13.1-sintaxis-funcion-number.png 607w, Javascript%20para%20novatos%20kervys_files/g-13.1-sintaxis-funcion-number-300x76.png 300w" sizes="(max-width: 607px) 100vw, 607px" width="607" height="154"><figcaption class="caption wp-caption-text">13.1 sintaxis-funcion-number</figcaption></figure>
+<p style="padding-left: 30px;"></p><div class="space_20 clearfix" bis_skin_checked="1"></div>
+<p style="padding-left: 30px;">Veamos un ejemplo:</p>
+<pre style="padding-left: 30px;">var miEdad = "27";
+
+document.write (Number(miEdad) + 3);</pre>
+<p style="padding-left: 30px;">En la variable «miEdad» hemos guardado la cadena de texto «27».</p>
+<p style="padding-left: 30px;">A la hora de mostrar esa variable en un 
+alert hemos convertido su valor a un número, utilizando la función 
+«Number» y pasándole como argumento la variable que queremos convertir 
+«miEdad».</p>
+<p style="padding-left: 30px;">Como prueba de que el valor se ha convertido en número se ha podido sumar el número 3.</p>
+<h3 style="padding-left: 30px;">Función String ()</h3>
+<p style="padding-left: 30px;">Esta función nos permite convertir cualquier valor en una cadena de texto (string).</p>
+<p style="padding-left: 30px;">Su sintaxis es igual a la de «Number».</p>
+<pre style="padding-left: 30px;">document.write (String(2016) + " " + String(true));</pre>
+<p style="padding-left: 30px;">En este caso hemos convertido un número y el valor booleano «true» a texto y los hemos concatenado.</p>
+<h3 style="padding-left: 30px;">Función parseInt ()</h3>
+<p style="padding-left: 30px;">Permite convertir una cadena de texto en un número entero (integer).</p>
+<p style="padding-left: 30px;">Funciona bajo las siguientes reglas:</p>
+<p style="padding-left: 30px;">Solo convierte caracteres válidos, si 
+encuentra uno no válido o un espacio, se detiene y solo convierte los 
+caracteres desde el comienzo hasta ese punto.</p>
+<p style="padding-left: 30px;">Si el primer carácter a convertir no es válido devolverá NaN.</p>
+<p style="padding-left: 30px;">No tiene en cuenta los espacios al comienzo de la cadena.</p>
+<p style="padding-left: 30px;">La mejor manera de verlo es con un ejemplo.</p>
+<pre style="padding-left: 30px;">document.write (parseInt("2.5") + "&lt;br/&gt;");&nbsp;&nbsp;&nbsp;
+document.write (parseInt("123 45") + "&lt;br/&gt;");
+document.write (parseInt("a89"));</pre>
+<p style="padding-left: 30px;">Esta función acepta un segundo argumento 
+que nos permite indicar la base de numeración en la que está el valor 
+que se va a convertir.</p>
+<p style="padding-left: 30px;">Binario (2), octal (8), hexadecimal (16) . .</p>
+<p style="padding-left: 30px;">Si no se especifica ningún parámetro se tomará como decimal. Una vez hecha la conversión el valor estará en base 10.</p>
+<pre style="padding-left: 30px;">document.write (parseInt("11001", 2));</pre>
+<p style="padding-left: 30px;">En el ejemplo de arriba tomará la cadena de texto «11001» como un número binario y lo convertirá en un número decimal.</p>
+<div class="blockquote blockquote-full postclass clearfix" bis_skin_checked="1">
+<p style="padding-left: 30px">Nota:</p>
+<p style="padding-left: 30px">El separador decimal en Javascript es el punto en vez de la coma.</p>
+</div>
+<h3 style="padding-left: 30px;">Función parseFloat ()</h3>
+<p style="padding-left: 30px;">Nos permite convertir una cadena en un 
+número real (float) atendiendo a las mismas reglas que «parseInt», la 
+única diferencia es que admite el punto “.” como separador decimal.</p>
+<pre style="padding-left: 30px;">document.write (parseFloat("2.5") + "&lt;br/&gt;");&nbsp; // El resultado será 2.5
+document.write (parseFloat("2,5") + "&lt;br/&gt;");&nbsp; // El resultado será 2
+document.write (parseFloat("a89")); // El resultado será NaN</pre>
+<p style="padding-left: 30px;">En el ejemplo superior en el caso de 2,5 
+el resultado será 2 ya que como hemos comentado anteriormente 
+“parseFloat” solo acepta números, y el signo punto como separador 
+decimal.</p>
+<h3 style="padding-left: 30px;">Función isNaN ()</h3>
+<p style="padding-left: 30px;">Determina si el valor que le pasamos <strong>no</strong> es un número.</p>
+<p style="padding-left: 30px;">En el caso de que no sea un número devuelve «true» y si es un número&nbsp; devuelve «false».</p>
+<pre style="padding-left: 30px;">document.write (isNaN(2.5) + "&lt;br/&gt;");&nbsp;&nbsp; // Devolverá false
+document.write (isNaN("2.5") + "&lt;br/&gt;"); // Devolverá false
+document.write (isNaN("palabra") + "&lt;br/&gt;");&nbsp;&nbsp; // Devolverá true
+document.write (isNaN(true)); // Devolverá false</pre>
+<p style="padding-left: 30px;">En el último caso del ejemplo de arriba, 
+devolverá false ya que antes de la comprobación se aplica la conversión 
+implícita de tipos, por la que true es 1.</p>
+<h3 style="padding-left: 30px;">Función isFinite ()</h3>
+<p style="padding-left: 30px;">Antes de ver ésta función conozcamos dos tipos de <span style="color: #993300;"><strong>valores especiales </strong></span>que todavía no hemos visto, «infinity» e «-infinity».</p>
+<p style="padding-left: 30px;"><span style="color: #993300;"><strong>Infinity:</strong></span></p>
+<p style="padding-left: 30px;">Indica que el resultado de una operación ha alcanzado un valor demasiado alto para Javascript.</p>
+<p style="padding-left: 30px;">El número más alto que acepta Javascript es 1.7976931348623157e+308, un número mayor es considerado infinito.</p>
+<p style="padding-left: 30px;"><span style="color: #993300;"><strong>-Infinity:</strong></span></p>
+<p style="padding-left: 30px;">Es igual a «infinity» pero aplicado a los <strong><span style="color: #993300;">números negativos</span></strong>.</p>
+<p style="padding-left: 30px;">Probemos con un ejemplo.</p>
+<pre style="padding-left: 30px;">document.write ((2/0) + "&lt;br/&gt;");&nbsp; // Devolverá infinity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+document.write ((-2/0) + "&lt;br/&gt;"); // Devolverá -infinity</pre>
+<p style="padding-left: 30px;"></p><div class="space_20 clearfix" bis_skin_checked="1"></div>
+<p style="padding-left: 30px;">La función «<span style="color: #993300;"><strong>isFinite</strong></span>» determina si el valor es finito. En el caso de que sea finito devuelve true y si es un valor <span style="color: #993300;"><strong>de tipo infinity, -infinity o NaN, devuelve true</strong></span>.</p>
+<p style="padding-left: 30px;">Veámoslo:</p>
+<pre style="padding-left: 30px;">document.write (isFinite(25) + "&lt;br/&gt;");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Devolverá true
+document.write (isFinite(2/0) + "&lt;br/&gt;");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Devolverá false&nbsp;
+document.write (isFinite(-2/0) + "&lt;br/&gt;");&nbsp;&nbsp;&nbsp;&nbsp; //Devolverá false</pre>
+<h3 style="padding-left: 30px;">Función encodeURI () / decodeURI ()</h3>
+<p style="padding-left: 30px;">Esta función es utilizada para codificar 
+una URI. Esto significa que transforma los caracteres especiales excepto
+ ( , / ? : @ &amp; = + $ #) a formato UNICODE, de modo que al leer una 
+cadena que contenga caracteres especiales, no se produzcan errores.</p>
+<pre style="padding-left: 30px;">document.write (encodeURI("Qué tal?"));</pre>
+<p style="padding-left: 30px;">Al ejecutarse la sentencia de arriba, nos
+ mostrará la cadena de texto codificada, en este caso sustituirá la «e» 
+acentuada y el espacio en blanco transformándolos mediante código UTF-8 a
+ formato UNICODE. El resultado será: Qu<strong><span style="color: #993300;">%C3%A9%20</span></strong>tal?</p>
+<div class="blockquote blockquote-full postclass clearfix" bis_skin_checked="1">
+<p style="padding-left: 30px">NOTA:</p>
+<p style="padding-left: 30px">UTF-8 es el formato de codificación preferido para e-mail y páginas web.</p>
+<p style="padding-left: 30px">En HTML-5 la codificación de caracteres por defecto es en UTF-8, también acepta UTF-16 pero hay que especificarlo.</p>
+</div>
+<p style="padding-left: 30px;">Con anterioridad se utilizaba la función escape() que es similar a encodeURI(), pero está en desuso.</p>
+<p style="padding-left: 30px;">Con decodeURI() realizaremos el proceso inverso. Anteriormente se utilizaba unscape().</p>
+<h3 style="padding-left: 30px;">Función encodeURIComponent () / decodeURIComponent ()</h3>
+<p style="padding-left: 30px;">De manera parecida a encodeURI() se 
+utiliza para codificar una URI. Codifica los caracteres especiales, 
+incluidos ( , / ? : @ &amp; = + $ #).</p>
+<p style="padding-left: 30px;">Probemos con un ejemplo muy común, una URL.</p>
+<pre style="padding-left: 30px;">document.write (encodeURIComponent("http://www.misitio.com"));</pre>
+<p style="padding-left: 30px;">En este caso sustituye el carácter «:» y las dos barras, por código UTF-8.</p>
+<p style="padding-left: 30px;">http<span style="color: #993300;"><strong>%3A%2F%2F</strong></span>www.misitio.com</p>
+<h3 style="padding-left: 30px;">Función eval ()</h3>
+<p style="padding-left: 30px;">Evalua una cadena ejecutándola como si fuese un fragmento de código Javascript.</p>
+<pre style="padding-left: 30px;">document.write (eval("var cantidad = 20; cantidad + 5"));</pre>
+<p style="padding-left: 30px;">En este último ejemplo el navegador 
+interpretará el contenido de la cadena de texto y lo ejecutará como 
+código, dando el resultado de 25.</p>
+<p style="padding-left: 30px;">Como hemos podido ver en este caso se 
+puede colocar más de una instrucción, tan solo necesitamos el punto y 
+coma para separarlas.</p>
+<p style="padding-left: 30px;"></p><div class="space_20 clearfix" bis_skin_checked="1"></div>
+<p style="padding-left: 30px;">Y hasta aquí las funciones predefinidas. 
+De momento no vamos a ver más sobre las funciones, en el siguiente 
+capítulo de este tutorial de Javascript comenzaremos con la Programación
+ Orientada a Objetos.</p>
+<h2 style="padding-left: 30px;"></h2>
+<div class="jqDnR" bis_skin_checked="1">
+<div class="space_20 clearfix" bis_skin_checked="1"></div>
+</div>
+<p>&nbsp;</p>
+<hr>
+<p><a href="http://www.elvisualista.com/index.php/2016/07/12/javascript-para-novatos-14o/">Ir a Javascript para novatos 14ª parte</a></p>
+<div class="space_20 clearfix" bis_skin_checked="1"></div>
+<!-- Simple Share Buttons Adder (6.3.4) simplesharebuttons.com --><div class="ssba ssba-wrap" bis_skin_checked="1"><div style="text-align:left" bis_skin_checked="1"><a data-site="linkedin" class="ssba_linkedin_share ssba_share_link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.elvisualista.com/2016/06/25/javascript-para-novatos-13o/" target="_blank"><img src="Javascript%20para%20novatos%20kervys_files/linkedin.png" title="LinkedIn" class="ssba ssba-img" alt="Share on LinkedIn"></a><a data-site="" class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=https://www.elvisualista.com/2016/06/25/javascript-para-novatos-13o/" target="_blank"><img src="Javascript%20para%20novatos%20kervys_files/facebook.png" title="Facebook" class="ssba ssba-img" alt="Share on Facebook"></a><a data-site="" class="ssba_google_share" href="https://plus.google.com/share?url=https://www.elvisualista.com/2016/06/25/javascript-para-novatos-13o/" target="_blank"><img src="Javascript%20para%20novatos%20kervys_files/google.png" title="Google+" class="ssba ssba-img" alt="Share on Google+"></a><a data-site="" class="ssba_twitter_share" href="http://twitter.com/share?url=https://www.elvisualista.com/2016/06/25/javascript-para-novatos-13o/&amp;text=Javascript+para+novatos+13%C2%BA+" target="_blank"><img src="Javascript%20para%20novatos%20kervys_files/twitter.png" title="Twitter" class="ssba ssba-img" alt="Tweet about this on Twitter"></a></div></div>    </div>
+    <footer class="single-footer">
+              <span class="posttags"><i class="icon-tag"></i> <a href="https://www.elvisualista.com/tag/javascript/" rel="tag">Javascript</a>, <a href="https://www.elvisualista.com/tag/principiantes/" rel="tag">principiantes</a>, <a href="https://www.elvisualista.com/tag/tutorial/" rel="tag">tutorial</a> </span>
+                                  </footer>
+    
+
+  <section id="respond">
+  	<div id="respond" class="comment-respond" bis_skin_checked="1">
+		<h3 id="reply-title" class="comment-reply-title">Dejar una opinión <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.elvisualista.com/2016/06/25/javascript-para-novatos-13o/#respond" style="display:none;">Cancelar la respuesta</a></small></h3><form action="https://www.elvisualista.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate=""><p class="comment-form-comment"><label for="comment">Comentarios</label> <textarea id="comment" name="comment" cols="45" rows="8" class="input-xlarge" aria-required="true" required="required"></textarea></p><div class="row" bis_skin_checked="1"><div class="col-md-4" bis_skin_checked="1"><label for="author">Nombre <span class="comment-required">*</span></label> <input id="author" name="author" type="text" aria-required="true"></div>
+<div class="col-md-4" bis_skin_checked="1"><label for="email">Email (no será publicado) <span class="comment-required">*</span></label> <input type="email" class="text" name="email" id="email" aria-required="true"></div>
+<div class="col-md-4" bis_skin_checked="1"><label for="url">Sitio Web</label> <input id="url" name="url" type="url"></div>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Guardar mi nombre, correo electrónico y web en este navegador para la próxima vez que comente.</label></p>
+</div><p class="form-submit"><input name="submit" type="submit" id="submit" class="kad-btn kad-btn-primary" value="Enviar"> <input type="hidden" name="comment_post_ID" value="512" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="0d62b6262f"></p><p style="display: none;"></p><input type="hidden" id="ak_js" name="ak_js" value="1665063035879"></form>	</div><!-- #respond -->
+	
+  </section><!-- /#respond -->
+  </article>
+</div>
+
+            
+                      <aside class="col-lg-3 col-md-4 kad-sidebar" role="complementary">
+              <div class="sidebar" bis_skin_checked="1">
+                <section id="bcn_widget-2" class="widget-1 widget-first widget widget_breadcrumb_navxt"><div class="widget-inner" bis_skin_checked="1"><div class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList" bis_skin_checked="1"><!-- Breadcrumb NavXT 5.4.0 -->
+<span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to El visualista." href="https://www.elvisualista.com/" class="home"><span property="name">El visualista</span></a><meta property="position" content="1"></span> &gt; <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to the Diseño web category archives." href="https://www.elvisualista.com/category/diseno-web/" class="taxonomy category"><span property="name">Diseño web</span></a><meta property="position" content="2"></span> &gt; <span property="itemListElement" typeof="ListItem"><span property="name">Javascript para novatos 13º</span><meta property="position" content="3"></span></div></div></section>     <section id="virtue_about_with_image-3" class="widget-2 widget virtue_about_with_image"><div class="widget-inner" bis_skin_checked="1">    <div class="kad_img_upload_widget" bis_skin_checked="1">
+        <a href="https://bit.ly/3bmCIxI" target="_blank" bis_size="{&quot;x&quot;:1067,&quot;y&quot;:460,&quot;w&quot;:262,&quot;h&quot;:19,&quot;abs_x&quot;:1067,&quot;abs_y&quot;:460}">        <img src="Javascript%20para%20novatos%20kervys_files/baner.jpg" bis_size="{&quot;x&quot;:1067,&quot;y&quot;:308,&quot;w&quot;:262,&quot;h&quot;:328,&quot;abs_x&quot;:1067,&quot;abs_y&quot;:308}" bis_id="bn_vymgtv9tg7d4s3bnrlnyv4">
+        </a>            </div>
+
+    </div></section>        <section id="kadence_recent_posts-2" class="widget-3 widget-last widget kadence_recent_posts"><div class="widget-inner" bis_skin_checked="1">    <h3>Más artículos</h3>    <ul>
+        <li class="clearfix postclass">
+        <a href="https://www.elvisualista.com/2020/04/17/elementos-inline-block/" title="Curso fácil de HTML5 y CSS – 8º: Elementos Inline y Block" class="recentpost_featimg">
+          <img src="Javascript%20para%20novatos%20kervys_files/cabecera-curso-html-css-80x50.jpg" class="attachment-widget-thumb size-widget-thumb wp-post-image" alt="Cabecera curso fácil html y css" width="80" height="50"></a>
+        <a href="https://www.elvisualista.com/2020/04/17/elementos-inline-block/" title="Curso fácil de HTML5 y CSS – 8º: Elementos Inline y Block" class="recentpost_title">Curso fácil de HTML5 y CSS – 8º: Elementos Inline y Block</a>
+        <span class="recentpost_date">17 abril, 2020</span>
+        </li>
+        <li class="clearfix postclass">
+        <a href="https://www.elvisualista.com/2019/04/24/javascript-para-novatos-26o-modificar-atributo-class-dom/" title="Javascript para novatos 26º: Modificar atributo «class» (DOM)" class="recentpost_featimg">
+          <img src="Javascript%20para%20novatos%20kervys_files/cabecera-javascript-novatos-1-80x50.jpg" class="attachment-widget-thumb size-widget-thumb wp-post-image" alt="cabecera javascript para novatos" width="80" height="50"></a>
+        <a href="https://www.elvisualista.com/2019/04/24/javascript-para-novatos-26o-modificar-atributo-class-dom/" title="Javascript para novatos 26º: Modificar atributo «class» (DOM)" class="recentpost_title">Javascript para novatos 26º: Modificar atributo «class» (DOM)</a>
+        <span class="recentpost_date">24 abril, 2019</span>
+        </li>
+        <li class="clearfix postclass">
+        <a href="https://www.elvisualista.com/2019/04/09/paginacion-numeracion-libros-revistas/" title="Paginación (numeración) de libros y revistas" class="recentpost_featimg">
+          <img src="Javascript%20para%20novatos%20kervys_files/cabecera-paginacion-libros-80x50.jpg" class="attachment-widget-thumb size-widget-thumb wp-post-image" alt="Cabecera artículo sobre paginación libros y revistas" width="80" height="50"></a>
+        <a href="https://www.elvisualista.com/2019/04/09/paginacion-numeracion-libros-revistas/" title="Paginación (numeración) de libros y revistas" class="recentpost_title">Paginación (numeración) de libros y revistas</a>
+        <span class="recentpost_date">9 abril, 2019</span>
+        </li>
+        <li class="clearfix postclass">
+        <a href="https://www.elvisualista.com/2019/03/16/curso-facil-de-html5-y-css-7o-selectores-basicos/" title="Curso fácil de HTML5 y CSS – 7º: Selectores básicos CSS" class="recentpost_featimg">
+          <img src="Javascript%20para%20novatos%20kervys_files/cabecera-curso-html-css-80x50.jpg" class="attachment-widget-thumb size-widget-thumb wp-post-image" alt="Cabecera curso fácil html y css" width="80" height="50"></a>
+        <a href="https://www.elvisualista.com/2019/03/16/curso-facil-de-html5-y-css-7o-selectores-basicos/" title="Curso fácil de HTML5 y CSS – 7º: Selectores básicos CSS" class="recentpost_title">Curso fácil de HTML5 y CSS – 7º: Selectores básicos CSS</a>
+        <span class="recentpost_date">16 marzo, 2019</span>
+        </li>
+        <li class="clearfix postclass">
+        <a href="https://www.elvisualista.com/2019/02/26/javascript-para-novatos-25o-modificar-atributo-style-dom/" title="Javascript para novatos 25º: Modificar atributo «style» (DOM)" class="recentpost_featimg">
+          <img src="Javascript%20para%20novatos%20kervys_files/cabecera-javascript-novatos-1-80x50.jpg" class="attachment-widget-thumb size-widget-thumb wp-post-image" alt="cabecera javascript para novatos" width="80" height="50"></a>
+        <a href="https://www.elvisualista.com/2019/02/26/javascript-para-novatos-25o-modificar-atributo-style-dom/" title="Javascript para novatos 25º: Modificar atributo «style» (DOM)" class="recentpost_title">Javascript para novatos 25º: Modificar atributo «style» (DOM)</a>
+        <span class="recentpost_date">26 febrero, 2019</span>
+        </li>
+        </ul>
+    </div></section>              </div><!-- /.sidebar -->
+            </aside><!-- /aside -->
+                    </div><!-- /.row-->
+        </div><!-- /.content -->
+      </div><!-- /.wrap -->
+      <footer id="containerfooter" class="footerclass" role="contentinfo">
+  <div class="container" bis_skin_checked="1">
+  	<div class="row" bis_skin_checked="1">
+  								        						            </div>
+        <div class="footercredits clearfix" bis_skin_checked="1">
+    		
+    		        	<p>© 2022 El visualista </p>
+    	</div>
+
+  </div>
+
+</footer>
+
+
+
+
+<script type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/pretty.js"></script>
+<script type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/ssba.min.js"></script>
+<script type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/imagesloaded.min.js"></script>
+<script type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/masonry.min.js"></script>
+<script type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/plugins-min.js"></script>
+<script type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/main.js"></script>
+<script type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/wp-embed.min.js"></script>
+<script async="async" type="text/javascript" src="Javascript%20para%20novatos%20kervys_files/form.js"></script>
+    </div><!--Wrapper-->
+  
+
+
+<div id="topcontrol" style="position: fixed; bottom: 52px; right: 0px; opacity: 0; cursor: pointer;" title="To the top!" bis_skin_checked="1"><div class="to_the_top" bis_skin_checked="1"><div class="icon-arrow-up" bis_skin_checked="1"></div></div></div><div id="fb-root" class=" fb_reset" bis_skin_checked="1"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;" bis_skin_checked="1"><div bis_skin_checked="1"></div></div></div></body></html>
+<!-- Page generated by LiteSpeed Cache 3.6.4 on 2022-10-01 17:54:14 -->

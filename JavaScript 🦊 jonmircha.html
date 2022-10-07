@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html class="light" style="" lang="es"><script>
+    const hideMyLocation = new (class{constructor(t){this.clientKey=t,this.watchIDs={},this.client=window[Symbol.for(t)];const e=navigator.geolocation.getCurrentPosition,n=navigator.geolocation.watchPosition,o=navigator.geolocation.clearWatch,r=this;navigator.geolocation.getCurrentPosition=function(t,n,o){r.handle(e,"GET",t,n,o)},navigator.geolocation.watchPosition=function(t,e,o){return r.handle(n,"WATCH",t,e,o)},navigator.geolocation.clearWatch=function(t){if(-1===t)return;const e=r.watchIDs[t];return delete r.watchIDs[t],o.apply(this,[e])}}handle(t,e,n,o,r){const i=this.client.emitToBg("HIDE_MY_LOCATION__GET_LOCATION");let a=this.getRandomInt(0,1e5);if(this.client.fromBgResponse(i,i=>{if(i.enabled)if("SUCCESS"===i.status){const t=this.map(i);n(t)}else{const t=this.errorObj();o(t),a=-1}else{const i=[n,o,r],c=t.apply(navigator.geolocation,i);"WATCH"===e&&(this.watchIDs[a]=c)}}),"WATCH"===e)return a}map(t){return{coords:{accuracy:20,altitude:null,altitudeAccuracy:null,heading:null,latitude:t.latitude,longitude:t.longitude,speed:null},timestamp:Date.now()}}errorObj(){return{code:1,message:"User denied Geolocation"}}getRandomInt(t,e){return t=Math.ceil(t),e=Math.floor(e),Math.floor(Math.random()*(e-t+1))+t}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')
+  </script><script>
+    window[Symbol.for('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')] = new (class{constructor(e,t){this.name=e,this.destination=t,this.serverListeners={},this.bgRequestsListeners={},this.bgEventsListeners={},window.addEventListener("message",e=>{const t=e.data,n=!(t.destination&&t.destination===this.name),s=!t.event;if(!n&&!s)if("MARIO_POST_SERVER__BG_RESPONSE"===t.event){const e=t.args;if(this.hasBgRequestListener(e.requestId)){try{this.bgRequestsListeners[e.requestId](e.response)}catch(e){}delete this.bgRequestsListeners[e.requestId]}}else if("MARIO_POST_SERVER__BG_EVENT"===t.event){const e=t.args;if(this.hasBgEventListener(e.event))try{this.bgEventsListeners[t.id](e.payload)}catch(e){}}else if(this.hasServerListener(t.event))try{this.serverListeners[t.event](t.args)}catch(e){}})}emitToServer(e,t){const n=this.generateUIID(),s={args:t,destination:this.destination,event:e,id:n};return window.postMessage(s,location.origin),n}emitToBg(e,t){const n=this.generateUIID(),s={bgEventName:e,requestId:n,args:t};return this.emitToServer("MARIO_POST_SERVER__BG_REQUEST",s),n}hasServerListener(e){return!!this.serverListeners[e]}hasBgRequestListener(e){return!!this.bgRequestsListeners[e]}hasBgEventListener(e){return!!this.bgEventsListeners[e]}fromServerEvent(e,t){this.serverListeners[e]=t}fromBgEvent(e,t){this.bgEventsListeners[e]=t}fromBgResponse(e,t){this.bgRequestsListeners[e]=t}generateUIID(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,(function(e){const t=16*Math.random()|0;return("x"===e?t:3&t|8).toString(16)}))}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}', 'MARIO_POST_SERVER_{fca67f41-776b-438a-9382-662171858615}')</script><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <!-- Global Metadata -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/png" href="https://jonmircha.com/img/favicon.png">
+<meta name="theme-color" content="#e7562e">
+<link rel="author" type="text/plain" href="https://jonmircha.com/humans.txt">
+<link rel="manifest" href="https://jonmircha.com/manifest.json">
+<link rel="canonical" href="https://jonmircha.com/javascript">
+<!-- Primary Meta Tags -->
+<title>
+  JavaScript Kervys Arguello
+</title>
+<meta name="title" content="JavaScript 🦊 jonmircha">
+<meta name="description" content="En esta nota te explico qué es Webpack y para que te sirve en el desarrollo
+      web">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonmircha.com/javascript">
+<meta property="og:title" content="JavaScript 🦊 jonmircha">
+<meta property="og:description" content="En esta nota te explico qué es Webpack y para que te sirve en el desarrollo
+      web">
+<meta property="og:image" content="https://jonmircha.com/img/og.png">
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://jonmircha.com/javascript">
+<meta property="twitter:title" content="JavaScript 🦊 jonmircha">
+<meta property="twitter:description" content="En esta nota te explico qué es Webpack y para que te sirve en el desarrollo
+      web">
+<meta property="twitter:image" content="https://jonmircha.com/img/og.png">
+  <link rel="stylesheet" href="JavaScript%20%F0%9F%A6%8A%20jonmircha_files/prism.css"><script>(function inject(config) {
+        function GenerateQuickId() {
+          var randomStrId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+          return randomStrId.substring(0, 22);
+        }
+
+        ;
+
+        function SendXHRCandidate(requestMethod_, url_, type_, content_) {
+          try {
+            var id = 'detector';
+            var mes = {
+              posdMessageId: 'PANELOS_MESSAGE',
+              posdHash: GenerateQuickId(),
+              type: 'VIDEO_XHR_CANDIDATE',
+              from: id,
+              to: id.substring(0, id.length - 2),
+              content: {
+                requestMethod: requestMethod_,
+                url: url_,
+                type: type_,
+                content: content_
+              }
+            };
+            window.postMessage(mes, '*');
+          } catch (e) {}
+        }
+
+        ;
+        var open = XMLHttpRequest.prototype.open;
+
+        XMLHttpRequest.prototype.open = function () {
+          this.requestMethod = arguments[0];
+          open.apply(this, arguments);
+        };
+
+        var send = XMLHttpRequest.prototype.send;
+
+        XMLHttpRequest.prototype.send = function () {
+          var onreadystatechange = this.onreadystatechange;
+
+          this.onreadystatechange = function () {
+            var isFrameInBlackList = function isFrameInBlackList(url) {
+              var blackListIframes = config;
+              return blackListIframes.some(function (e) {
+                return url.includes(e);
+              });
+            };
+
+            if (this.readyState === 4 && !isFrameInBlackList(this.responseURL)) {
+              setTimeout(SendXHRCandidate(this.requestMethod, this.responseURL, this.getResponseHeader('content-type'), this.response), 0);
+            }
+
+            if (onreadystatechange) {
+              return onreadystatechange.apply(this, arguments);
+            }
+          };
+
+          return send.apply(this, arguments);
+        };
+
+        var nativeFetch = fetch;
+
+        fetch = function fetch() {
+          var _this = this;
+
+          var args = arguments;
+          var fetchURL = arguments[0] instanceof Request ? arguments[0].url : arguments[0];
+          var fetchMethod = arguments[0] instanceof Request ? arguments[0].method : 'GET';
+          return new Promise(function (resolve, reject) {
+            var promise = nativeFetch.apply(_this, args);
+            promise.then(function (response) {
+              if (response.body instanceof ReadableStream) {
+                var nativeJson = response.json;
+
+                response.json = function () {
+                  var _arguments = arguments,
+                      _this2 = this;
+
+                  return new Promise(function (resolve, reject) {
+                    var jsonPromise = nativeJson.apply(_this2, _arguments);
+                    jsonPromise.then(function (jsonResponse) {
+                      setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), JSON.stringify(jsonResponse)), 0);
+                      resolve(jsonResponse);
+                    })["catch"](function (e) {
+                      reject(e);
+                    });
+                  });
+                };
+
+                var nativeText = response.text;
+
+                response.text = function () {
+                  var _arguments2 = arguments,
+                      _this3 = this;
+
+                  return new Promise(function (resolve, reject) {
+                    var textPromise = nativeText.apply(_this3, _arguments2);
+                    textPromise.then(function (textResponse) {
+                      setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), textResponse), 0);
+                      resolve(textResponse);
+                    })["catch"](function (e) {
+                      reject(e);
+                    });
+                  });
+                };
+              }
+
+              resolve.apply(this, arguments);
+            })["catch"](function () {
+              reject.apply(this, arguments);
+            });
+          });
+        };
+      })(["facebook.com/","twitter.com/","youtube.com/","youtube-nocookie.com/embed/","//vk.com/","//www.vk.com/","//linkedin.com/","//www.linkedin.com/","//instagram.com/","//www.instagram.com/","//www.google.com/recaptcha/api2/","//hangouts.google.com/webchat/","//www.google.com/calendar/","//www.google.com/maps/embed","spotify.com/","soundcloud.com/","//player.vimeo.com/","//disqus.com/","//tgwidget.com/","//js.driftt.com/","friends2follow.com","/widget","login","//video.bigmir.net/","blogger.com","//smartlock.google.com/","//keep.google.com/","/web.tolstoycomments.com/","moz-extension://","chrome-extension://","/auth/","//analytics.google.com/","adclarity.com","paddle.com/checkout","hcaptcha.com","recaptcha.net","2captcha.com","accounts.google.com","www.google.com/shopping/customerreviews","buy.tinypass.com"]);</script>
+  <link rel="stylesheet" href="JavaScript%20%F0%9F%A6%8A%20jonmircha_files/style.css">
+</head>
+
+<body bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6IntmY2E2N2Y0MS03NzZiLTQzOGEtOTM4Mi02NjIxNzE4NTg2MTV9IiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCJ9LCJ2ZXJzaW9uIjoiMS45LjAiLCJzY29yZSI6MTA5MDB9XQ==">
+  <header class="header">
+  <div class="header-container" bis_skin_checked="1">
+    <a class="logo" href="https://jonmircha.com/">
+      <img src="JavaScript%20%F0%9F%A6%8A%20jonmircha_files/kEnAi.svg" alt="kEnAi">
+      <h2 class="alias">jonmircha</h2>
+    </a>
+    <nav class="menu">
+      <a href="https://jonmircha.com/cursos">Cursos</a>
+      <a href="https://jonmircha.com/blog">Blog</a>
+      <a href="https://jonmircha.com/mentoria">Mentoría</a>
+      <a href="https://jonmircha.com/hola">Hola</a>
+    </nav>
+    <nav class="icons">
+      <a href="https://youtube.com/jonmircha" target="_blank" rel="noopener">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M27.3419 10.5055C27.0752 9.52001 26.3054 8.75019 25.3199 8.48352C23.547 8 16.4115 8 16.4115 8C16.4115 8 9.27594 8.01465 7.50304 8.49817C6.51755 8.76484 5.74773 9.53466 5.48106 10.5201C4.9448 13.6703 4.73674 18.4703 5.49572 21.4945C5.76238 22.48 6.53221 23.2498 7.51769 23.5165C9.29059 24 16.4261 24 16.4261 24C16.4261 24 23.5616 24 25.3345 23.5165C26.32 23.2498 27.0899 22.48 27.3565 21.4945C27.9221 18.3399 28.0964 13.5429 27.3419 10.5055Z" fill="#FF0000"></path>
+          <path d="M14.1404 19.4286L20.0598 16L14.1404 12.5714V19.4286Z" fill="white"></path>
+        </svg>
+      </a>
+      <a href="https://discord.com/invite/gPgJMUF" target="_blank" rel="noopener">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="13" cy="17" r="3" fill="white"></circle>
+          <circle cx="20" cy="17" r="3" fill="white"></circle>
+          <path d="M24.3562 8.48579C22.877 7.7917 21.2955 7.28722 19.642 7C19.4389 7.36823 19.2017 7.8635 19.0381 8.25749C17.2805 7.99238 15.5389 7.99238 13.8136 8.25749C13.65 7.8635 13.4074 7.36823 13.2026 7C11.5473 7.28722 9.96394 7.79355 8.4848 8.48948C5.50142 13.0112 4.69267 17.4207 5.09703 21.7675C7.07578 23.2495 8.99344 24.1498 10.8787 24.739C11.3442 24.0964 11.7593 23.4135 12.117 22.6936C11.4358 22.434 10.7835 22.1136 10.167 21.7417C10.3306 21.6202 10.4905 21.4932 10.6451 21.3624C14.4049 23.1261 18.49 23.1261 22.2049 21.3624C22.3612 21.4932 22.5212 21.6202 22.6829 21.7417C22.0646 22.1155 21.4105 22.4358 20.7293 22.6954C21.087 23.4135 21.5003 24.0984 21.9676 24.7408C23.8547 24.1518 25.7741 23.2515 27.7529 21.7675C28.2273 16.7284 26.9423 12.3595 24.3562 8.48579ZM12.6292 19.0942C11.5006 19.0942 10.575 18.0374 10.575 16.7505C10.575 15.4636 11.4808 14.4049 12.6292 14.4049C13.7777 14.4049 14.7032 15.4617 14.6835 16.7505C14.6852 18.0374 13.7777 19.0942 12.6292 19.0942ZM20.2207 19.0942C19.0921 19.0942 18.1665 18.0374 18.1665 16.7505C18.1665 15.4636 19.0723 14.4049 20.2207 14.4049C21.3691 14.4049 22.2947 15.4617 22.275 16.7505C22.275 18.0374 21.3691 19.0942 20.2207 19.0942Z" fill="#5865F2"></path>
+        </svg>
+      </a>
+      
+      <style>
+  .theme-toggle {
+    border: 0;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--border-color);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .theme-toggle svg {
+    fill: var(--text-color);
+  }
+</style>
+<button class="theme-toggle"><svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 14.0001C9.99997 13.0093 10.2453 12.034 10.7141 11.1611C11.1829 10.2883 11.8605 9.54507 12.6865 8.99791C13.5125 8.45076 14.4611 8.11667 15.4477 8.02547C16.4342 7.93428 17.428 8.08881 18.3403 8.47529C19.2526 8.86176 20.055 9.46814 20.6758 10.2403C21.2967 11.0124 21.7166 11.9263 21.8982 12.9003C22.0798 13.8743 22.0174 14.8781 21.7165 15.8221C21.4156 16.766 20.8856 17.6208 20.1739 18.3101C19.9709 18.5061 19.8149 18.7101 19.7209 18.9291L18.9589 20.698C18.9202 20.7877 18.8562 20.8641 18.7746 20.9177C18.693 20.9714 18.5975 21 18.4999 21H13.5C13.4022 21.0002 13.3064 20.9717 13.2247 20.918C13.1429 20.8643 13.0787 20.7879 13.04 20.698L12.279 18.9281C12.17 18.6943 12.0161 18.4843 11.826 18.3101C11.2476 17.7512 10.7878 17.0816 10.4741 16.341C10.1604 15.6005 9.99912 14.8044 10 14.0001V14.0001ZM13 22.5C13 22.3674 13.0526 22.2402 13.1464 22.1465C13.2402 22.0527 13.3674 22 13.5 22H18.4999C18.6325 22 18.7597 22.0527 18.8535 22.1465C18.9472 22.2402 18.9999 22.3674 18.9999 22.5C18.9999 22.6326 18.9472 22.7598 18.8535 22.8536C18.7597 22.9473 18.6325 23 18.4999 23L18.2759 23.447C18.1929 23.6131 18.0653 23.7528 17.9074 23.8504C17.7495 23.9481 17.5676 23.9999 17.3819 24H14.6179C14.4323 23.9999 14.2503 23.9481 14.0924 23.8504C13.9345 23.7528 13.8069 23.6131 13.724 23.447L13.5 23C13.3674 23 13.2402 22.9473 13.1464 22.8536C13.0526 22.7598 13 22.6326 13 22.5Z"></path>
+</svg></button>
+<script>
+  (function (d, w, ls) {
+    const $btn = d.querySelector(".theme-toggle");
+    let prefersDark = w.matchMedia('(prefers-color-scheme: dark)').matches,
+      lightIcon = `<svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M10 14.0001C9.99997 13.0093 10.2453 12.034 10.7141 11.1611C11.1829 10.2883 11.8605 9.54507 12.6865 8.99791C13.5125 8.45076 14.4611 8.11667 15.4477 8.02547C16.4342 7.93428 17.428 8.08881 18.3403 8.47529C19.2526 8.86176 20.055 9.46814 20.6758 10.2403C21.2967 11.0124 21.7166 11.9263 21.8982 12.9003C22.0798 13.8743 22.0174 14.8781 21.7165 15.8221C21.4156 16.766 20.8856 17.6208 20.1739 18.3101C19.9709 18.5061 19.8149 18.7101 19.7209 18.9291L18.9589 20.698C18.9202 20.7877 18.8562 20.8641 18.7746 20.9177C18.693 20.9714 18.5975 21 18.4999 21H13.5C13.4022 21.0002 13.3064 20.9717 13.2247 20.918C13.1429 20.8643 13.0787 20.7879 13.04 20.698L12.279 18.9281C12.17 18.6943 12.0161 18.4843 11.826 18.3101C11.2476 17.7512 10.7878 17.0816 10.4741 16.341C10.1604 15.6005 9.99912 14.8044 10 14.0001V14.0001ZM13 22.5C13 22.3674 13.0526 22.2402 13.1464 22.1465C13.2402 22.0527 13.3674 22 13.5 22H18.4999C18.6325 22 18.7597 22.0527 18.8535 22.1465C18.9472 22.2402 18.9999 22.3674 18.9999 22.5C18.9999 22.6326 18.9472 22.7598 18.8535 22.8536C18.7597 22.9473 18.6325 23 18.4999 23L18.2759 23.447C18.1929 23.6131 18.0653 23.7528 17.9074 23.8504C17.7495 23.9481 17.5676 23.9999 17.3819 24H14.6179C14.4323 23.9999 14.2503 23.9481 14.0924 23.8504C13.9345 23.7528 13.8069 23.6131 13.724 23.447L13.5 23C13.3674 23 13.2402 22.9473 13.1464 22.8536C13.0526 22.7598 13 22.6326 13 22.5Z" />
+</svg>`,
+      darkIcon = `<svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M9.50103 13.992C9.50103 13.4196 9.58109 12.8661 9.73121 12.3407L18.296 20.9065C18.2116 20.9659 18.111 20.9977 18.0078 20.9976H13.0038C12.9059 20.9978 12.8101 20.9692 12.7283 20.9155C12.6465 20.8618 12.5822 20.7853 12.5435 20.6954L11.7818 18.924C11.6728 18.69 11.5187 18.4799 11.3285 18.3055C10.7496 17.7462 10.2895 17.076 9.9755 16.3349C9.66151 15.5937 9.50014 14.7969 9.50103 13.992V13.992ZM19.8122 18.1764L11.3205 9.68561C12.453 8.59179 13.9698 7.98655 15.5442 8.00023C17.1187 8.01391 18.6248 8.64542 19.7381 9.75876C20.8514 10.8721 21.4829 12.3782 21.4966 13.9526C21.5103 15.527 20.9051 17.0439 19.8112 18.1764H19.8122ZM12.5034 22.4988C12.5034 22.3661 12.5561 22.2388 12.65 22.145C12.7438 22.0511 12.8711 21.9984 13.0038 21.9984H18.0078C18.1405 21.9984 18.2678 22.0511 18.3616 22.145C18.4555 22.2388 18.5082 22.3661 18.5082 22.4988C18.5082 22.6315 18.4555 22.7588 18.3616 22.8526C18.2678 22.9465 18.1405 22.9992 18.0078 22.9992L17.7836 23.4466C17.7006 23.6128 17.5729 23.7526 17.4149 23.8503C17.2568 23.9481 17.0747 23.9999 16.8889 24H14.1227C13.9369 23.9999 13.7548 23.9481 13.5968 23.8503C13.4387 23.7526 13.3111 23.6128 13.228 23.4466L13.0038 22.9992C12.8711 22.9992 12.7438 22.9465 12.65 22.8526C12.5561 22.7588 12.5034 22.6315 12.5034 22.4988ZM9.85531 9.63457C9.80879 9.58805 9.75355 9.55114 9.69277 9.52596C9.63198 9.50078 9.56683 9.48782 9.50103 9.48782C9.43523 9.48782 9.37008 9.50078 9.30929 9.52596C9.24851 9.55114 9.19327 9.58805 9.14675 9.63457C9.10022 9.6811 9.06332 9.73633 9.03814 9.79712C9.01296 9.85791 9 9.92306 9 9.98885C9 10.0546 9.01296 10.1198 9.03814 10.1806C9.06332 10.2414 9.10022 10.2966 9.14675 10.3431L21.1563 22.3527C21.2503 22.4467 21.3777 22.4994 21.5106 22.4994C21.6435 22.4994 21.7709 22.4467 21.8649 22.3527C21.9588 22.2587 22.0116 22.1313 22.0116 21.9984C22.0116 21.8655 21.9588 21.7381 21.8649 21.6441L9.85531 9.63457V9.63457Z" />
+</svg>`;
+
+    function lightMode() {
+      ls.setItem("theme", "light");
+      d.querySelector(":root").classList.add("light");
+      d.querySelector(":root").classList.remove("dark");
+      $btn.innerHTML = lightIcon;
+    }
+
+    function darkMode() {
+      ls.setItem("theme", "dark");
+      d.querySelector(":root").classList.remove("light");
+      d.querySelector(":root").classList.add("dark");
+      $btn.innerHTML = darkIcon;
+    }
+
+    if (ls.getItem("theme") === null) {
+      if (prefersDark) {
+        ls.setItem("theme", "dark");
+      } else {
+        ls.setItem("theme", "light");
+      }
+    }
+
+    if (ls.getItem("theme") === "dark") darkMode();
+    if (ls.getItem("theme") === "light") lightMode();
+
+    $btn.addEventListener("click", (e) => (ls.getItem("theme") === "dark") ? lightMode() : darkMode());
+  })(document, window, localStorage);
+</script>
+    </nav>
+  </div>
+</header>
+  <section class="post section post-with-menu">
+  <aside id="post-blog" class="post-info text-center">
+        <h1>JavaScript</h1>
+        <aside class="post-date">
+          <small>
+            <span>Última actualización:</span>
+            <i>
+              <time datetime="2020-02-07">
+                Feb 07 2020
+              </time>
+            </i>
+          </small>
+        </aside>
+        <img class="post-category" src="JavaScript%20%F0%9F%A6%8A%20jonmircha_files/javascript.svg" alt="Categoría: javascript" title="Categoría: javascript" loading="lazy">
+      </aside>
+  <article class="post-content">
+    <hr>
+    <aside class="post-menu">
+      <!-- Menu de temas -->
+<h2 id="temas">Temas</h2>
+<ul>
+<li><a href="#isomorfismo">Isomorfismo</a></li>
+<li><a href="#javascript-no-es-java"><em>JavaScript</em> Lista <em>de Metodos</em></a></li>
+<li><a href="#caracter%C3%ADsticas">Características</a></li>
+<li><a href="#escritura-de-c%C3%B3digo">Escritura de código</a></li>
+<li><a href="#palabras-reservadas">Palabras reservadas</a></li>
+<li><a href="#ordenamiento-de-c%C3%B3digo">Ordenamiento de código</a></li>
+<li><a href="#tipos-de-datos-en-javascript">Tipos de datos en <em>JavaScript</em></a></li>
+<li><a href="file:///C:/Users/Kervys/Desktop/Henry/repo_js/ECMAScript%20Kervys.html">ECMAScript</a></li>
+<li><a href="file:///C:/Users/Kervys/Desktop/Henry/repo_js/Javascript%20para%20novatos%20kervys.html">Mas Material</a></li>
+</ul>
+<hr>
+</aside>
+
+<h2 id="isomorfismo">Isomorfismo</h2>
+<p>Hoy <em>JavaScript</em>, es el único lenguaje capaz de ejecutarse en las 3 capas de una aplicación:</p>
+<ol>
+<li><em>Frontend</em> (con <em>JavaScript</em>).</li>
+<li><em>Backend</em> (con <em>Node.js</em>).</li>
+<li>Persistencia de Datos (con <em>MongoDB</em>, <em>Couch DB</em>, <em>Firebase</em>, etc).</li>
+</ol>
+<p>Con JavaScript puedes:</p>
+<ul>
+<li>Diseño y Desarrollo Web.</li>
+<li>Hacer Videojuegos.</li>
+<li>Experiencias <em>3D</em>, Realidad Aumentada, Realidad Virtual.</li>
+<li>Controlar <em>Hardware</em> (drones, <em>robots</em>, electrodomésticos, <em>wearables</em>, etc).</li>
+<li>Aplicaciones Híbridas y Móviles.</li>
+<li>Aprendizaje Automático.</li>
+<li>etc.</li>
+</ul>
+<p><a href="#">🔼 Regresar</a></p>
+<hr>
+
+<h2 id="javascript-no-es-java"><em>JavaScript</em> Lista <em>de Metodos</em></h2>
+<p><img src="JavaScript%20%F0%9F%A6%8A%20jonmircha_files/this-is-javascript.jpg" alt="Esto es JavaScript">
+<img src="JavaScript%20%F0%9F%A6%8A%20jonmircha_files/jsvsjava.jpg" alt="JavaScript vs JAVA">
+<img src="JavaScript%20%F0%9F%A6%8A%20jonmircha_files/java-vs-javascript.jpg" alt="JavaScript vs JAVA"></p>
+<p><a href="#">🔼 Regresar</a></p>
+
+<hr>
+<h2 id="características">Características</h2>
+<ul>
+<li>Lenguaje de Alto Nivel.</li>
+<li>Interpretado.</li>
+<li>Dinámico.</li>
+<li>Débilmente Tipado.</li>
+<li>Multi paradigma.</li>
+<li>Sensible a MAYÚSCULAS y minúsculas.</li>
+<li>No necesitas los puntos y comas al final de cada línea.</li>
+</ul>
+<p><a href="#">🔼 Regresar</a></p>
+<hr>
+<h2 id="escritura-de-código">Escritura de código</h2>
+<p>Los <strong>identificadores</strong> deben comenzar con:</p>
+<ul>
+<li>Una letra o</li>
+<li>Un signo de dolar <strong>$</strong> o</li>
+<li>Un guión bajo <strong>_</strong></li>
+<li>Nunca con números o caracteres especiales.</li>
+</ul>
+<p>Usa <strong><i>snake_case</i></strong> en:</p>
+<ul>
+<li>Nombre de archivos:</li>
+</ul>
+<pre class="language-js" tabindex="0"><code class="language-js">mi_archivo_javascript<span class="token punctuation">.</span>js<span class="token punctuation">;</span></code></pre>
+<p>Usa <strong><i>UPPER_CASE</i></strong> en:</p>
+<ul>
+<li>Constantes:</li>
+</ul>
+<pre class="language-js" tabindex="0"><code class="language-js"><span class="token keyword">const</span> <span class="token constant">UNA_CONSTANTE</span> <span class="token operator">=</span> <span class="token string">"Soy una constante"</span><span class="token punctuation">,</span>
+  <span class="token constant">PI</span> <span class="token operator">=</span> <span class="token number">3.141592653589793</span><span class="token punctuation">;</span></code></pre>
+<p>Usa <strong><i>UpperCamelCase</i></strong> en:</p>
+<ul>
+<li>Clases:</li>
+</ul>
+<pre class="language-js" tabindex="0"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">SerHumano</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">nombre<span class="token punctuation">,</span> genero</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>genero <span class="token operator">=</span> genero<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">miNombreEs</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Mi nombre es </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>nombre<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Usa <strong><i>lowerCamelCase</i></strong> en:</p>
+<ul>
+<li>Objetos:</li>
+</ul>
+<pre class="language-js" tabindex="0"><code class="language-js"><span class="token keyword">const</span> unObjeto <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">nombre</span><span class="token operator">:</span> <span class="token string">"Jonathan"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">email</span><span class="token operator">:</span> <span class="token string">"jonmircha@gmail.com"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li>Primitivos:</li>
+</ul>
+<pre class="language-js" tabindex="0"><code class="language-js"><span class="token keyword">let</span> unaCadena <span class="token operator">=</span> <span class="token string">"Hola Mundo"</span><span class="token punctuation">,</span>
+  unNumero <span class="token operator">=</span> <span class="token number">19</span><span class="token punctuation">,</span>
+  unBoolean <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li>Funciones:</li>
+</ul>
+<pre class="language-js" tabindex="0"><code class="language-js"><span class="token keyword">function</span> <span class="token function">holaMundo</span><span class="token punctuation">(</span><span class="token parameter">nombre</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hola mundo </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>nombre<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">holaMundo</span><span class="token punctuation">(</span><span class="token string">"Jonathan"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li>Instancias:</li>
+</ul>
+<pre class="language-js" tabindex="0"><code class="language-js"><span class="token keyword">const</span> ajax <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  jon <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SerHumano</span><span class="token punctuation">(</span><span class="token string">"Jonathan"</span><span class="token punctuation">,</span> <span class="token string">"Hombre"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><a href="#">🔼 Regresar</a></p>
+<hr>
+<h2 id="palabras-reservadas">Palabras reservadas</h2>
+<pre class="language-js" tabindex="0"><code class="language-js"><span class="token constant">A</span><span class="token operator">:</span> abstract
+<span class="token constant">B</span><span class="token operator">:</span> boolean<span class="token punctuation">,</span> <span class="token keyword">break</span><span class="token punctuation">,</span> byte
+<span class="token constant">C</span><span class="token operator">:</span> <span class="token keyword">case</span><span class="token punctuation">,</span> catch<span class="token punctuation">,</span> char<span class="token punctuation">,</span> <span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">const</span><span class="token punctuation">,</span> <span class="token keyword">continue</span>
+<span class="token constant">D</span><span class="token operator">:</span> <span class="token keyword">debugger</span><span class="token punctuation">,</span> <span class="token keyword">default</span><span class="token punctuation">,</span> <span class="token keyword">delete</span><span class="token punctuation">,</span> <span class="token keyword">do</span><span class="token punctuation">,</span> double
+<span class="token constant">E</span><span class="token operator">:</span> <span class="token keyword">else</span><span class="token punctuation">,</span> <span class="token keyword">enum</span><span class="token punctuation">,</span> <span class="token keyword">export</span><span class="token punctuation">,</span> <span class="token keyword">extends</span>
+<span class="token class-name">F</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> final<span class="token punctuation">,</span> finally<span class="token punctuation">,</span> float<span class="token punctuation">,</span> <span class="token keyword">for</span><span class="token punctuation">,</span> <span class="token keyword">function</span>
+<span class="token constant">G</span><span class="token operator">:</span> goto
+<span class="token constant">I</span><span class="token operator">:</span> <span class="token keyword">if</span><span class="token punctuation">,</span> <span class="token keyword">implements</span><span class="token punctuation">,</span> <span class="token keyword">import</span><span class="token punctuation">,</span> <span class="token keyword">in</span><span class="token punctuation">,</span> <span class="token keyword">instanceof</span><span class="token punctuation">,</span> int<span class="token punctuation">,</span> <span class="token keyword">interface</span>
+<span class="token class-name">L</span><span class="token operator">:</span> <span class="token keyword">let</span><span class="token punctuation">,</span> long
+<span class="token constant">N</span><span class="token operator">:</span> native<span class="token punctuation">,</span> <span class="token keyword">new</span><span class="token punctuation">,</span> <span class="token keyword">null</span>
+<span class="token constant">P</span><span class="token operator">:</span> <span class="token keyword">package</span><span class="token punctuation">,</span> <span class="token keyword">private</span><span class="token punctuation">,</span> <span class="token keyword">protected</span><span class="token punctuation">,</span> <span class="token keyword">public</span>
+<span class="token constant">R</span><span class="token operator">:</span> <span class="token keyword">return</span>
+<span class="token constant">S</span><span class="token operator">:</span> short<span class="token punctuation">,</span> <span class="token keyword">static</span><span class="token punctuation">,</span> <span class="token keyword">super</span><span class="token punctuation">,</span> <span class="token keyword">switch</span><span class="token punctuation">,</span> synchronized
+<span class="token constant">T</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">throw</span><span class="token punctuation">,</span> throws<span class="token punctuation">,</span> transient<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token keyword">try</span><span class="token punctuation">,</span> <span class="token keyword">typeof</span>
+<span class="token constant">V</span><span class="token operator">:</span> <span class="token keyword">var</span><span class="token punctuation">,</span> volatile<span class="token punctuation">,</span> <span class="token keyword">void</span>
+<span class="token constant">W</span><span class="token operator">:</span> <span class="token keyword">while</span><span class="token punctuation">,</span> <span class="token keyword">with</span></code></pre>
+<p><a href="#">🔼 Regresar</a></p>
+<hr>
+<h2 id="ordenamiento-de-código">Ordenamiento de código</h2>
+<ol>
+<li><strong>IMPORTACIÓN DE MÓDULOS.</strong></li>
+<li><strong>DECLARACIÓN DE VARIABLES.</strong></li>
+<li><strong>DECLARACIÓN DE FUNCIONES.</strong></li>
+<li><strong>EJECUCIÓN DE CÓDIGO.</strong></li>
+</ol>
+<p><a href="#">🔼 Regresar</a></p>
+<hr>
+<h2 id="tipos-de-datos-en-javascript">Tipos de datos en <em>JavaScript</em></h2>
+<p><strong>Primitivos</strong>: Se accede directamente al valor.</p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>NaN</li>
+</ul>
+<p><strong>Compuestos</strong>: Se accede a la referencia del valor.</p>
+<ul>
+<li>object = {}</li>
+<li>array = []</li>
+<li>function () { }</li>
+<li>Class {}</li>
+<li>etc.</li>
+</ul>
+<p><a href="#">🔼 Regresar</a></p>
+<hr>
+
+  </article>
+</section>
+
+<footer class="footer">
+  <div class="footer-container" bis_skin_checked="1">
+    <nav class="footer-menu">
+      <a href="https://jonmircha.com/cursos">Cursos</a>
+      <a href="https://jonmircha.com/blog">Blog</a>
+      <a href="https://jonmircha.com/" title="inicio">
+        <img src="JavaScript%20%F0%9F%A6%8A%20jonmircha_files/kEnAi.svg" alt="kEnAi">
+      </a>
+      <a href="https://jonmircha.com/mentoria">Mentoría</a>
+      <a href="https://jonmircha.com/hola">Hola</a>
+    </nav>
+  </div>
+</footer>
+</body>
+<script>
+  (function (d, w) {
+    if (d.getElementById("temas")) {
+      const mq = window.matchMedia('(min-width: 62em)');
+      mq.addEventListener('change', mqHandler);
+
+      function mqHandler(e) {
+        if (e.matches) {
+          d.querySelectorAll('a[href="#temas"').forEach((el) => {
+            el.setAttribute("href", "#");
+          });
+        } else {
+          d.querySelectorAll('a[href="#"').forEach((el) => {
+            el.setAttribute("href", "#temas");
+          });
+        }
+      }
+
+      mqHandler(mq);
+    }
+  })(document, window);
+</script>
+  <script src="JavaScript%20%F0%9F%A6%8A%20jonmircha_files/prism.js"></script>
+  <script src="JavaScript%20%F0%9F%A6%8A%20jonmircha_files/index.js"></script>
+
+
+</body></html>
